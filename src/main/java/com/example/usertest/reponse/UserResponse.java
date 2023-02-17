@@ -1,6 +1,5 @@
 package com.example.usertest.reponse;
 
-import com.example.usertest.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,4 +12,6 @@ public class UserResponse {
     private String userName;
     private String mobileNumber;
     private List<RoleResponse> roles;
+    private List<AddressResponse> addresses;
+    private AccountResponse account;
 }

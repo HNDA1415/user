@@ -1,19 +1,16 @@
 package com.example.usertest.controller;
 
 
-import com.example.usertest.dto.RoleDto;
 import com.example.usertest.dto.UserDto;
 import com.example.usertest.entity.Role;
 import com.example.usertest.entity.UserEntity;
 import com.example.usertest.mapper.RoleMapper;
 import com.example.usertest.mapper.UserMapper;
 import com.example.usertest.repo.RoleRepo;
-import com.example.usertest.reponse.RoleRes;
 import com.example.usertest.reponse.UserResponse;
 import com.example.usertest.request.UserRequest;
 import com.example.usertest.service.RoleService;
 import com.example.usertest.service.UserService;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +41,6 @@ public class UserController {
     @PostMapping(path = "/user")
     public UserResponse createUser(@RequestBody UserRequest userRequest) {
 
-
         UserDto userDto = userMapper.toUserDto(userRequest);
         UserDto savedUserDto = userService.createUser(userDto);
         UserResponse response = userMapper.toUserResponse(savedUserDto);
@@ -62,6 +58,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}")
+    //@PreAuthorize("hasRole('ROLE_USER')")
     public UserResponse getUserById(@PathVariable Integer id) {
         UserDto userDto = userService.getUserByUserId(id);
         UserResponse response = userMapper.toUserResponse(userDto);
@@ -83,19 +80,15 @@ public class UserController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public UserResponse UpdateAdmin(@PathVariable Integer id, @RequestBody UserRequest userRequest) {
         UserDto userDto = userMapper.toUserDto(userRequest);
-        UserDto saved = userService.updateUser(id, userDto);
+        UserDto saved = userService.updateAdmin(id, userDto);
         UserResponse response = userMapper.toUserResponse(saved);
 
         return response;
     }
-   /* @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> DeleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
         return new ResponseEntity<>("success", HttpStatus.OK);
-    }*/
-    @DeleteMapping(path = "/{id}")
-    public void DeleteUser1(@PathVariable int id){
-        userService.deleteUser(id);
     }
 
 
@@ -103,8 +96,6 @@ public class UserController {
     public List<UserResponse> getUsers(@RequestParam(value = "r") String roleName){
 
         List<UserResponse> responses = new ArrayList<>();
-
-        //Role role = roleService.findByRoleName(roleName);
 
         Role role1=roleRepo.findByrName(roleName);
 

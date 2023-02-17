@@ -1,5 +1,7 @@
 package com.example.usertest.dto;
 
+import com.example.usertest.entity.Account;
+import com.example.usertest.entity.Addresses;
 import com.example.usertest.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +18,7 @@ public class UserDto implements Serializable {
     private String password;
     private String mobileNumber;
     private List<Role> roles;
+    private List<Addresses> addresses;
+    private Account account;
 
 }

@@ -13,7 +13,6 @@ public class RoleMapperImpl implements RoleMapper{
     public RoleDto toRoleDto(RoleReq roleRes) {
         RoleDto roleDto= new RoleDto();
         roleDto.setRoleName(roleRes.getRoleName());
-        //roleDto.setUserEntities(roleRes.getUserEntities());
         return roleDto;
     }
 
@@ -21,7 +20,6 @@ public class RoleMapperImpl implements RoleMapper{
     public Role toRoleEntity(RoleDto roleDto) {
         Role role = new Role();
         role.setRoleName(roleDto.getRoleName());
-        //role.setUserEntities(roleDto.getUserEntities());
         return role;
     }
 
@@ -33,7 +31,6 @@ public class RoleMapperImpl implements RoleMapper{
         RoleDto roleDto = new RoleDto();
         roleDto.setId(savedRole.getId());
         roleDto.setRoleName(savedRole.getRoleName());
-        //roleDto.setUserEntities(savedRole.getUserEntities());
         return roleDto;
     }
 
@@ -42,7 +39,6 @@ public class RoleMapperImpl implements RoleMapper{
         RoleRes roleRes = new RoleRes();
         roleRes.setId(savedRole.getId());
         roleRes.setRoleName(savedRole.getRoleName());
-        //roleRes.setUserEntities(savedRole.getUserEntities());
         return roleRes;
     }
 }

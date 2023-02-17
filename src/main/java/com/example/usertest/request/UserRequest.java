@@ -1,6 +1,7 @@
 package com.example.usertest.request;
 
-import com.example.usertest.entity.Role;
+import com.example.usertest.entity.Account;
+import com.example.usertest.entity.Addresses;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,4 +14,6 @@ public class UserRequest {
     private String userName;
     private String password;
     private String mobileNumber;
+    private List<Addresses> addresses;
+    private Account account;
 }
