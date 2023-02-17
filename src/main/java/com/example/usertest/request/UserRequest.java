@@ -15,5 +15,5 @@ public class UserRequest {
     private String password;
     private String mobileNumber;
     private List<Addresses> addresses;
-    private Account account;
+
 }

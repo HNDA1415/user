@@ -27,7 +27,7 @@ public class UserMapperImpl implements  UserMapper{
         userDto.setPassword(userRequest.getPassword());
         userDto.setMobileNumber(userRequest.getMobileNumber());
         userDto.setAddresses(userRequest.getAddresses());
-        userDto.setAccount(userRequest.getAccount());
+        //userDto.setAccount(userRequest.getAccount());
         return userDto;
     }
 
@@ -76,20 +76,30 @@ public class UserMapperImpl implements  UserMapper{
 
         List<AddressResponse> addressResponses = new ArrayList<>();
         List<Addresses> addresses = user.getAddresses();
-        for (Addresses adds:addresses){
-            AddressResponse addressResponse = new AddressResponse();
-            addressResponse.setId(adds.getId());
-            addressResponse.setCountry(adds.getCountry());
-            addressResponse.setCity(adds.getCity());
-            addressResponse.setZipCode(adds.getZipCode());
-            addressResponse.setStreetName(adds.getStreetName());
-            addressResponses.add(addressResponse);
+        if (addresses == null){
+            response.setAddresses(null);
+        }else {
+            for (Addresses adds:addresses){
+                AddressResponse addressResponse = new AddressResponse();
+                addressResponse.setId(adds.getId());
+                addressResponse.setCountry(adds.getCountry());
+                addressResponse.setCity(adds.getCity());
+                addressResponse.setZipCode(adds.getZipCode());
+                addressResponse.setStreetName(adds.getStreetName());
+                addressResponses.add(addressResponse);
+            }
+            response.setAddresses(addressResponses);
         }
-        response.setAddresses(addressResponses);
+
         AccountResponse accountResponse = new AccountResponse();
-        accountResponse.setId(user.getAccount().getId());
-        accountResponse.setAmount(user.getAccount().getAmount());
-        response.setAccount(accountResponse);
+        if (user.getAccount() == null){
+            response.setAccount(null);
+        }else {
+            accountResponse.setId(user.getAccount().getId());
+            accountResponse.setAmount(user.getAccount().getAmount());
+            response.setAccount(accountResponse);
+        }
+
 
         return response;
     }
@@ -117,16 +127,21 @@ public class UserMapperImpl implements  UserMapper{
 
         Set<AddressResponse> addressResponses = new HashSet<>();
         Set<Addresses> addresses = user.getAddresses();
-        for (Addresses addses : addresses){
-            AddressResponse aResponse = new AddressResponse();
-            aResponse.setId(addses.getId());
-            aResponse.setCountry(addses.getCountry());
-            aResponse.setCity(addses.getCity());
-            aResponse.setZipCode(addses.getZipCode());
-            aResponse.setStreetName(addses.getStreetName());
-            addressResponses.add(aResponse);
+        if (addresses == null){
+            response.setAddresses(null);
+        }else {
+            for (Addresses addses : addresses){
+                AddressResponse aResponse = new AddressResponse();
+                aResponse.setId(addses.getId());
+                aResponse.setCountry(addses.getCountry());
+                aResponse.setCity(addses.getCity());
+                aResponse.setZipCode(addses.getZipCode());
+                aResponse.setStreetName(addses.getStreetName());
+                addressResponses.add(aResponse);
+            }
+            response.setAddresses(new ArrayList<>(addressResponses));
         }
-        response.setAddresses(new ArrayList<>(addressResponses));
+
         AccountResponse accountResponse = new AccountResponse();
         accountResponse.setId(user.getAccount().getId());
         accountResponse.setAmount(user.getAccount().getAmount());

@@ -103,11 +103,14 @@ public class UserServiceImpl implements UserService {
             adds.setUser(user);
             addSet.add(adds);
         }
-
         user.setAddresses(addSet);
-        Account account = accountRepository.getById(userDto.getId());
+        Account account = user.getAccount();
+        if (account == null) {
+            user.setAccount(null);
+        }else {
+            user.setAccount(account);
+        }
 
-        user.setAccount(account);
         UserEntity savedUser = userRepository.save(user);
         UserDto udto = userMapper.toUserDto(savedUser);
         return udto;
