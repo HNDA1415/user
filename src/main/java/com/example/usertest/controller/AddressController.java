@@ -73,6 +73,7 @@ public class AddressController {
 
     @PutMapping(path = "address/{id}")
     public AddressResponse UpdateAddress(@PathVariable int id, @RequestBody AddressRequest addressRequest) {
+        System.out.println(addressRequest.getCity());
         AddressDto addressDto = addressMapper.toAddressDto(addressRequest);
         AddressDto saved = addressService.updateAddress(id, addressDto);
         AddressResponse response = addressMapper.toAddressResponse(saved);
