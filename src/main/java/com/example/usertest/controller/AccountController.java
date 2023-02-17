@@ -63,6 +63,7 @@ public class AccountController {
         AccountDto accountDto = accountMapper.toAccountDto(accountRequest);
         AccountDto savedAcc = accountService.updateAccount(id,accountDto);
         AccountResponse response = accountMapper.toAccountResponse(savedAcc);
+        System.out.println(response);
 
         return response;
     }
