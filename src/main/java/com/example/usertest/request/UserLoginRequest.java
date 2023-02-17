@@ -5,6 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RoleReq {
-    private String roleName;
+public class UserLoginRequest {
+
+    private String mobileNumber;
+    private String password;
 }

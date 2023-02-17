@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RoleRes {
+public class AccountResponse {
+
     private Integer id;
-    private String roleName;
+    private double amount;
 }

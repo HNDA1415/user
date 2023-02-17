@@ -2,13 +2,11 @@ package com.example.usertest.service;
 
 
 import com.example.usertest.dto.UserDto;
-import com.example.usertest.request.UserRequest;
+import com.example.usertest.entity.UserEntity;
 
 public interface UserService {
 
     UserDto createUser(UserDto user);
-
-   // UserDto getUser(UserDto userDto);
 
     UserDto updateUser(Integer id, UserDto userDto);
 
@@ -18,5 +16,8 @@ public interface UserService {
 
     UserDto createAdmin(UserDto userDto);
 
-   // UserDto updateAdmin(Integer id, UserDto userDto);
+    UserEntity getUserById(int id);
+
+    UserDto updateAdmin(Integer id, UserDto userDto);
+
 }
